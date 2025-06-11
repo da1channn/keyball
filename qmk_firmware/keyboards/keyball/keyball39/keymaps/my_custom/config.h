@@ -25,9 +25,9 @@
 #define COMBO_TERM 60
 
 // タッピング設定
-#define TAPPING_TERM 170
+#define TAPPING_TERM 220
 #define PERMISSIVE_HOLD
-#define TAPPING_TERM_PER_KEY
+#define IGNORE_MOD_TAP_INTERRUPT
 
 // Auto Mouse Layer設定
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
