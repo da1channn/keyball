@@ -25,9 +25,10 @@
 #define COMBO_TERM 60
 
 // タッピング設定
-#define TAPPING_TERM 220
-#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 200  // 200-220msが推奨
 #define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+#define QUICK_TAP_TERM 0  // 連続タップ時の誤動作防止
 
 // Auto Mouse Layer設定
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
