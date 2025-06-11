@@ -25,7 +25,7 @@
 #define COMBO_TERM 60
 
 // タッピング設定
-#define TAPPING_TERM 500        // 長めに設定
+#define TAPPING_TERM 800        // 長めに設定
 #define RETRO_TAPPING           // 必須
 #define PERMISSIVE_HOLD         // 他のキーとの組み合わせ改善
 #define QUICK_TAP_TERM 150  // 連続タップ時の誤動作防止
