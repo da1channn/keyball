@@ -26,8 +26,8 @@
 
 // タッピング設定
 #define TAPPING_TERM 220
-#define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM_PER_KEY
 
 // Auto Mouse Layer設定
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
