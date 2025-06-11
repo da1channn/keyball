@@ -22,21 +22,18 @@
 
 // コンボ設定
 #define COMBO_COUNT 13
-#define COMBO_TERM 60  // 50→60に変更
+#define COMBO_TERM 60
 
 // タッピング設定
 #define TAPPING_TERM 170
 #define PERMISSIVE_HOLD
-#define TAPPING_TERM_PER_KEY  // 新規追加
+#define TAPPING_TERM_PER_KEY
 
-// Auto Mouse Layer設定（最適化済み）
+// Auto Mouse Layer設定
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 #define AUTO_MOUSE_LAYER_KEEP_TIME 30000
-#define AML_ACTIVATE_THRESHOLD 70   // 50→70に変更
-#define AML_TIMEOUT_MIN 150         // 100→150に変更
-#define AML_TIMEOUT_MAX 1500        // 1000→1500に変更
-#define AML_TIMEOUT_QU 75           // 50→75に変更
+#define AML_ACTIVATE_THRESHOLD 70
 
 // トラックボール設定
-#define POINTING_DEVICE_TASK_THROTTLE_MS 8  // 新規追加
+#define POINTING_DEVICE_TASK_THROTTLE_MS 8
