@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     MT_A     , MT_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , MT_L     , MT_MINS  ,
     KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  ,
-    KC_LCTL  , KC_LGUI  , KC_LALT  , XXXXXXX  ,LT(2,KC_LANG2),LT(1,KC_SPC),LT(3,KC_LANG1),LT(3,KC_BSPC),LT(2,KC_ENT), KC_RALT, KC_RGUI, KC_RCTL
+    KC_LCTL  , KC_LGUI  , KC_LALT  , XXXXXXX  ,LT(2,KC_INT5),LT(1,KC_SPC),LT(3,KC_INT4),LT(3,KC_BSPC),LT(2,KC_ENT), KC_RALT, KC_RGUI, KC_RCTL
   ),
   
   // Layer 1 - Nav/Mouse
