@@ -25,9 +25,9 @@
 #define COMBO_TERM 60
 
 // タッピング設定
-#define TAPPING_TERM 220  // 200-220msが推奨
-#define TAPPING_TERM_PER_KEY
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 300        // 長めに設定
+#define RETRO_TAPPING           // 必須
+#define PERMISSIVE_HOLD         // 他のキーとの組み合わせ改善
 #define QUICK_TAP_TERM 0  // 連続タップ時の誤動作防止
 
 // Auto Mouse Layer設定
