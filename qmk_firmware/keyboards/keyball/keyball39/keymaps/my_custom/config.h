@@ -13,7 +13,6 @@
 #define TAPPING_TERM 1000
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM 100
-#define IGNORE_MOD_TAP_INTERRUPT   // 有効（コンボ優先）
 
 // Auto Mouse Keys設定
 #define AUTO_MOUSE_DEFAULT_LAYER 1
