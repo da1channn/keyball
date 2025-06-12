@@ -85,8 +85,8 @@ enum combos {
 const uint16_t PROGMEM combo_tab[]    = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_copy[]   = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM combo_paste[]  = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM combo_esc[]    = {KC_Q, KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM combo_selall[] = {KC_W, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_A, COMBO_END};  // Q+Aに変更
+const uint16_t PROGMEM combo_selall[] = {KC_Q, KC_R, COMBO_END};
 const uint16_t PROGMEM combo_prtscr[] = {KC_T, KC_G, COMBO_END};
 const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 
@@ -106,8 +106,8 @@ combo_t key_combos[] = {
     [COMBO_TAB]    = COMBO(combo_tab, KC_TAB),
     [COMBO_COPY]   = COMBO(combo_copy, LCTL(KC_C)),
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)), 
-    [COMBO_SELALL] = COMBO(combo_selall, LCTL(KC_A)),    // W+E+R = 全選択
-    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),
+    [COMBO_SELALL] = COMBO(combo_selall, LCTL(KC_A)),    // Q+R = 全選択
+    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // Q+A = Es
     [COMBO_PRTSCR] = COMBO(combo_prtscr, KC_PSCR),
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
     
