@@ -86,7 +86,7 @@ const uint16_t PROGMEM combo_tab[]    = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_copy[]   = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM combo_paste[]  = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_A, COMBO_END};  // Q+Aに変更
-const uint16_t PROGMEM combo_selall[] = {KC_Q, KC_R, COMBO_END};
+const uint16_t PROGMEM combo_selall[] = {KC_W, KC_R, COMBO_END};  // W+Rに変更
 const uint16_t PROGMEM combo_prtscr[] = {KC_T, KC_G, COMBO_END};
 const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 
@@ -106,8 +106,8 @@ combo_t key_combos[] = {
     [COMBO_TAB]    = COMBO(combo_tab, KC_TAB),
     [COMBO_COPY]   = COMBO(combo_copy, LCTL(KC_C)),
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)), 
-    [COMBO_SELALL] = COMBO(combo_selall, LCTL(KC_A)),    // Q+R = 全選択
-    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // Q+A = Es
+    [COMBO_SELALL] = COMBO_ACTION(combo_selall),         // マクロアクションに変更
+    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // Q+A = Esc
     [COMBO_PRTSCR] = COMBO(combo_prtscr, KC_PSCR),
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
     
@@ -123,6 +123,18 @@ combo_t key_combos[] = {
     [COMBO_EQL]   = COMBO(combo_eql, JIS_EQL)        // = → KC_MINS
 };
 #endif
+
+// コンボアクション関数を追加（全選択をマクロとして実行）
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case COMBO_SELALL:
+            if (pressed) {
+                // Ctrl+Aを確実に送信
+                SEND_STRING(SS_LCTL("a"));
+            }
+            break;
+    }
+}
 
 // レイヤー定義
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -156,22 +168,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// Tapping Termのキーごと調整
+// Tapping Termのキーごと調整（ショートカット向けに最適化）
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // 人差し指（器用）は短めでOK
+        // 人差し指（Shift/Alt）
         case LSFT_T(KC_F):
         case LALT_T(KC_V):
         case RSFT_T(KC_J):
         case RALT_T(KC_M):
-            return 1000;
+            return 1000;  // ショートカット向けに延長
             
-        // 中指はやや長め
+        // 中指（Ctrl/GUI）
         case LCTL_T(KC_D):
         case LGUI_T(KC_C):
         case RCTL_T(KC_K):
         case RGUI_T(KC_COMM):
-            return 1000;
+            return 1000;  // より長めに設定
             
         default:
             return TAPPING_TERM;
