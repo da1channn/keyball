@@ -21,7 +21,7 @@
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 
 // Combo設定
-#define COMBO_COUNT 15                // コンボ総数
+#define COMBO_COUNT 16                // コンボ総数
 #define COMBO_TERM 70                 // 50→70に変更
 
 // Mod-Tap設定（中指・人差し指に最適化）
