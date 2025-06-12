@@ -48,75 +48,86 @@
 #define JIS_QUES LSFT(KC_SLSH)  // ?
 #define JIS_EXLM LSFT(KC_1)     // !
 
-// MOD-TAPの定義（JIS用）
-#define MT_A MT(MOD_LCTL, KC_A)
-#define MT_S MT(MOD_LALT, KC_S)
-#define MT_D MT(MOD_LGUI, KC_D)
-#define MT_F MT(MOD_LSFT, KC_F)
-#define MT_J MT(MOD_RSFT, KC_J)
-#define MT_K MT(MOD_RGUI, KC_K)
-#define MT_L MT(MOD_RALT, KC_L)
-#define MT_MINS MT(MOD_RCTL, JIS_MINS) // JIS用の-
+// MOD-TAPの定義（中指・人差し指のみ）
+#define MT_D LCTL_T(KC_D)
+#define MT_F LSFT_T(KC_F)
+#define MT_C LGUI_T(KC_C)
+#define MT_V LALT_T(KC_V)
+#define MT_J RSFT_T(KC_J)
+#define MT_K RCTL_T(KC_K)
+#define MT_M RALT_T(KC_M)
+#define MT_COMM RGUI_T(KC_COMM)
 
 // コンボの定義
 #ifdef COMBO_ENABLE
 enum combos {
-    COMBO_ESC,
+    // 左手
     COMBO_TAB,
     COMBO_COPY,
     COMBO_PASTE,
-    COMBO_ENTER,
-    COMBO_BSPC,
-    COMBO_ALTSCR,
+    COMBO_ESC,
+    COMBO_PRTSCR,
     COMBO_WINSCR,
-    COMBO_COMMA,
-    COMBO_DOT,
-    COMBO_SEMICOLON,
-    COMBO_SAVE,
-    COMBO_UNDO
+    // 右手
+    COMBO_LBRC,
+    COMBO_RBRC,
+    COMBO_AT,
+    COMBO_QUOT,
+    COMBO_DQUO,
+    COMBO_LPRN,
+    COMBO_RPRN,
+    COMBO_COLN,
+    COMBO_EQL
 };
 
-// 既存のコンボ（JIS調整済み）
-const uint16_t PROGMEM combo_esc[]    = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM combo_tab[]    = {MT_A, MT_S, COMBO_END};
-const uint16_t PROGMEM combo_copy[]   = {KC_T, KC_G, COMBO_END};
-const uint16_t PROGMEM combo_paste[]  = {KC_G, KC_B, COMBO_END};
-const uint16_t PROGMEM combo_enter[]  = {MT_MINS, MT_L, COMBO_END};
-const uint16_t PROGMEM combo_bspc[]   = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM combo_altscr[] = {KC_Y, KC_H, COMBO_END};
-const uint16_t PROGMEM combo_winscr[] = {KC_H, KC_N, COMBO_END};
+// 左手コンボ
+const uint16_t PROGMEM combo_tab[]    = {KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM combo_copy[]   = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM combo_paste[]  = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM combo_esc[]    = {KC_Q, KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM combo_prtscr[] = {KC_T, KC_G, COMBO_END};
+const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 
-// 新規コンボ
-const uint16_t PROGMEM combo_comma[]     = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM combo_dot[]       = {KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo_semicolon[] = {MT_L, MT_MINS, COMBO_END};
-const uint16_t PROGMEM combo_save[]      = {MT_S, MT_D, COMBO_END};
-const uint16_t PROGMEM combo_undo[]      = {KC_Z, KC_X, COMBO_END};
+// 右手コンボ
+const uint16_t PROGMEM combo_lbrc[]  = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM combo_rbrc[]  = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM combo_at[]    = {KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM combo_quot[]  = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_dquo[]  = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_lprn[]  = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM combo_rprn[]  = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo_coln[]  = {KC_Y, KC_H, COMBO_END};
+const uint16_t PROGMEM combo_eql[]   = {KC_H, KC_N, COMBO_END};
 
 combo_t key_combos[] = {
-    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),
+    // 左手
     [COMBO_TAB]    = COMBO(combo_tab, KC_TAB),
     [COMBO_COPY]   = COMBO(combo_copy, LCTL(KC_C)),
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)),
-    [COMBO_ENTER]  = COMBO(combo_enter, KC_ENT),
-    [COMBO_BSPC]   = COMBO(combo_bspc, KC_BSPC),
-    [COMBO_ALTSCR] = COMBO(combo_altscr, LALT(KC_PSCR)),
+    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),
+    [COMBO_PRTSCR] = COMBO(combo_prtscr, KC_PSCR),
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
-    [COMBO_COMMA]  = COMBO(combo_comma, KC_COMM),
-    [COMBO_DOT]    = COMBO(combo_dot, KC_DOT),
-    [COMBO_SEMICOLON] = COMBO(combo_semicolon, JIS_SCLN), // JIS用;
-    [COMBO_SAVE]   = COMBO(combo_save, LCTL(KC_S)),
-    [COMBO_UNDO]   = COMBO(combo_undo, LCTL(KC_Z))
+    
+    // 右手（JIS配列対応）
+    [COMBO_LBRC]  = COMBO(combo_lbrc, JIS_LBRC),     // [ → KC_RBRC
+    [COMBO_RBRC]  = COMBO(combo_rbrc, JIS_RBRC),     // ] → KC_NUHS
+    [COMBO_AT]    = COMBO(combo_at, JIS_AT),         // @ → KC_LBRC
+    [COMBO_QUOT]  = COMBO(combo_quot, JIS_QUOT),     // ' → KC_2
+    [COMBO_DQUO]  = COMBO(combo_dquo, JIS_DQUO),     // " → LSFT(KC_2)
+    [COMBO_LPRN]  = COMBO(combo_lprn, JIS_LPRN),     // ( → LSFT(KC_8)
+    [COMBO_RPRN]  = COMBO(combo_rprn, JIS_RPRN),     // ) → LSFT(KC_9)
+    [COMBO_COLN]  = COMBO(combo_coln, JIS_COLN),     // : → LSFT(KC_QUOT)
+    [COMBO_EQL]   = COMBO(combo_eql, JIS_EQL)        // = → KC_MINS
 };
 #endif
 
 // レイヤー定義
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  // Layer 0 - Base（JIS対応）
+  // Layer 0 - Base（JIS対応、Mod-Tapは中指・人差し指のみ）
   [0] = LAYOUT_universal(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    MT_A     , MT_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , MT_L     , MT_MINS  ,
-    KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  ,
+    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , JIS_MINS ,
+    KC_Z     , KC_X     , MT_C     , MT_V     , KC_B     ,                            KC_N     , MT_M     , MT_COMM  , KC_DOT   , KC_SLSH  ,
     KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_RSFT
   ),
   
@@ -142,18 +153,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// Mod-Tapのタイミング調整
+// Tapping Termのキーごと調整
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case MT_F:
-        case MT_J:
-            return 200;
-        case MT_A:
-        case MT_MINS:
-            return 150;
+        // 人差し指（器用）は短めでOK
+        case LSFT_T(KC_F):
+        case LALT_T(KC_V):
+        case RSFT_T(KC_J):
+        case RALT_T(KC_M):
+            return 500;
+            
+        // 中指はやや長め
+        case LCTL_T(KC_D):
+        case LGUI_T(KC_C):
+        case RCTL_T(KC_K):
+        case RGUI_T(KC_COMM):
+            return 800;
+            
         default:
             return TAPPING_TERM;
     }
+}
+
+// コンボをレイヤー0と1のみで有効化
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    uint8_t layer = get_highest_layer(layer_state);
+    return (layer == 0 || layer == 1);
 }
 
 #ifdef OLED_ENABLE
