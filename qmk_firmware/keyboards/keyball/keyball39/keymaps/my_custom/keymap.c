@@ -113,19 +113,19 @@ combo_t key_combos[] = {
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)), 
     [COMBO_SELALL] = COMBO(combo_selall, SELECT_ALL),    // カスタムキーコードを使用
     [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // A+Q = Esc
-    [COMBO_PRTSCR] = COMBO(combo_prtscr, LALT(KC_PSCR)), // Alt+PrtScr（ウィンドウのスクショ）に変更
+    [COMBO_PRTSCR] = COMBO(combo_prtscr, LALT(KC_PSCR)), // Alt+PrtScr（ウィンドウのスクショ）
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
     
-    // 右手（JIS配列対応 - 修正版）
+    // 右手（JIS配列対応 - 再修正版）
     [COMBO_LBRC]  = COMBO(combo_lbrc, JIS_LBRC),        // [ → KC_RBRC
     [COMBO_RBRC]  = COMBO(combo_rbrc, JIS_RBRC),        // ] → KC_NUHS
     [COMBO_AT]    = COMBO(combo_at, JIS_AT),            // @ → KC_LBRC
-    [COMBO_QUOT]  = COMBO(combo_quot, LSFT(KC_7)),      // ' → Shift+7に修正
-    [COMBO_DQUO]  = COMBO(combo_dquo, JIS_DQUO),        // " → LSFT(KC_2)
-    [COMBO_LPRN]  = COMBO(combo_lprn, JIS_LPRN),        // ( → LSFT(KC_8)
-    [COMBO_RPRN]  = COMBO(combo_rprn, JIS_RPRN),        // ) → LSFT(KC_9)
-    [COMBO_COLN]  = COMBO(combo_coln, KC_QUOT),         // : → KC_QUOTに修正
-    [COMBO_EQL]   = COMBO(combo_eql, LSFT(KC_MINS))     // = → Shift+Minusに修正
+    [COMBO_QUOT]  = COMBO(combo_quot, LSFT(KC_7)),      // ' → Shift+7
+    [COMBO_DQUO]  = COMBO(combo_dquo, LSFT(KC_2)),      // " → Shift+2
+    [COMBO_LPRN]  = COMBO(combo_lprn, LSFT(KC_8)),      // ( → Shift+8
+    [COMBO_RPRN]  = COMBO(combo_rprn, LSFT(KC_9)),      // ) → Shift+9
+    [COMBO_COLN]  = COMBO(combo_coln, KC_QUOT),         // : → KC_QUOT
+    [COMBO_EQL]   = COMBO(combo_eql, LSFT(KC_BSLS))     // = → Shift+BSLS（修正）
 };
 #endif
 
@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Layer 0 - Base（JIS対応、Mod-Tapは中指・人差し指のみ）
   [0] = LAYOUT_universal(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_MINS  , // 右端を通常のマイナスキーに変更
+    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_BSLS  , // 右端をKC_BSLSに修正
     KC_Z     , KC_X     , MT_C     , MT_V     , KC_B     ,                            KC_N     , MT_M     , MT_COMM  , KC_DOT   , KC_SLSH  ,
     KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_RSFT
   ),
