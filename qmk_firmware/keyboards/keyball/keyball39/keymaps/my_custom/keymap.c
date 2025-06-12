@@ -17,6 +17,11 @@
 
 #include QMK_KEYBOARD_H
 
+// カスタムキーコードを定義
+enum custom_keycodes {
+    SELECT_ALL = SAFE_RANGE
+};
+
 // JIS配列用のキーコード定義
 #define JIS_MINS KC_BSLS        // -
 #define JIS_EQL  KC_MINS        // =
@@ -81,23 +86,23 @@ enum combos {
     COMBO_EQL
 };
 
-// 左手コンボ
+// 左手コンボ（順序変更済み）
 const uint16_t PROGMEM combo_tab[]    = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_copy[]   = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM combo_paste[]  = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM combo_esc[] = {KC_Q, KC_A, COMBO_END};  // Q+Aに変更
-const uint16_t PROGMEM combo_selall[] = {KC_W, KC_R, COMBO_END};  // W+Rに変更
+const uint16_t PROGMEM combo_esc[]    = {KC_A, KC_Q, COMBO_END};    // 順序をA+Qに変更
+const uint16_t PROGMEM combo_selall[] = {KC_R, KC_W, COMBO_END};    // 順序をR+Wに変更
 const uint16_t PROGMEM combo_prtscr[] = {KC_T, KC_G, COMBO_END};
 const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 
-// 右手コンボ
+// 右手コンボ（MT_定義を使用）
 const uint16_t PROGMEM combo_lbrc[]  = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM combo_rbrc[]  = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM combo_at[]    = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM combo_quot[]  = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM combo_dquo[]  = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_lprn[]  = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM combo_rprn[]  = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo_quot[]  = {MT_J, MT_K, COMBO_END};     // KC_J → MT_Jに変更
+const uint16_t PROGMEM combo_dquo[]  = {MT_K, KC_L, COMBO_END};     // KC_K → MT_Kに変更
+const uint16_t PROGMEM combo_lprn[]  = {MT_M, MT_COMM, COMBO_END};  // KC_M → MT_M、KC_COMM → MT_COMMに変更
+const uint16_t PROGMEM combo_rprn[]  = {MT_COMM, KC_DOT, COMBO_END}; // KC_COMM → MT_COMMに変更
 const uint16_t PROGMEM combo_coln[]  = {KC_Y, KC_H, COMBO_END};
 const uint16_t PROGMEM combo_eql[]   = {KC_H, KC_N, COMBO_END};
 
@@ -106,8 +111,8 @@ combo_t key_combos[] = {
     [COMBO_TAB]    = COMBO(combo_tab, KC_TAB),
     [COMBO_COPY]   = COMBO(combo_copy, LCTL(KC_C)),
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)), 
-    [COMBO_SELALL] = COMBO_ACTION(combo_selall),         // マクロアクションに変更
-    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // Q+A = Esc
+    [COMBO_SELALL] = COMBO(combo_selall, SELECT_ALL),    // カスタムキーコードを使用
+    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // A+Q = Esc
     [COMBO_PRTSCR] = COMBO(combo_prtscr, KC_PSCR),
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
     
@@ -124,16 +129,19 @@ combo_t key_combos[] = {
 };
 #endif
 
-// コンボアクション関数を追加（全選択をマクロとして実行）
-void process_combo_event(uint16_t combo_index, bool pressed) {
-    switch(combo_index) {
-        case COMBO_SELALL:
-            if (pressed) {
-                // Ctrl+Aを確実に送信
-                SEND_STRING(SS_LCTL("a"));
+// カスタムキーコードの処理
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SELECT_ALL:
+            if (record->event.pressed) {
+                // Ctrl+Aを送信
+                register_code(KC_LCTL);
+                tap_code(KC_A);
+                unregister_code(KC_LCTL);
             }
-            break;
+            return false;  // このキーの処理を終了
     }
+    return true;  // その他のキーは通常通り処理
 }
 
 // レイヤー定義
@@ -168,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// Tapping Termのキーごと調整（ショートカット向けに最適化）
+// Tapping Termのキーごと調整（ユーザーの要望により長め）
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // 人差し指（Shift/Alt）
@@ -176,14 +184,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LALT_T(KC_V):
         case RSFT_T(KC_J):
         case RALT_T(KC_M):
-            return 1000;  // ショートカット向けに延長
+            return 1000;  // ユーザーの要望により長め
             
         // 中指（Ctrl/GUI）
         case LCTL_T(KC_D):
         case LGUI_T(KC_C):
         case RCTL_T(KC_K):
         case RGUI_T(KC_COMM):
-            return 1000;  // より長めに設定
+            return 1000;  // ユーザーの要望により長め
             
         default:
             return TAPPING_TERM;
