@@ -89,7 +89,7 @@ combo_t key_combos[] = {
     [COMBO_LBRC]  = COMBO(combo_lbrc, KC_RBRC),              // [
     [COMBO_RBRC]  = COMBO(combo_rbrc, KC_NUHS),              // ]
     [COMBO_AT]    = COMBO(combo_at, KC_LBRC),                // @
-    [COMBO_QUOT]  = COMBO(combo_quot, S(KC_7)),              // '
+    [COMBO_QUOT]  = COMBO(combo_quot, KC_A), // ← 出力をS(KC_7)からKC_Aに変更
     [COMBO_DQUO]  = COMBO(combo_dquo, S(KC_2)),              // "
     [COMBO_LPRN]  = COMBO(combo_lprn, S(KC_8)),              // (
     [COMBO_RPRN]  = COMBO(combo_rprn, S(KC_9)),              // )
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Layer 0 - Base（JIS対応）
   [0] = LAYOUT_universal(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_MINS  , // ハイフン
+    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_EQL  , // ハイフン
     KC_Z     , KC_X     , MT_C     , MT_V     , KC_B     ,                            KC_N     , MT_M     , MT_COMM  , KC_DOT   , KC_SLSH  ,
     KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),RSFT_T(KC_LNG2),KC_RALT,KC_RGUI,KC_RSFT
   ),
