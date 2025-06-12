@@ -126,7 +126,7 @@ combo_t key_combos[] = {
     [COMBO_LPRN]  = COMBO(combo_lprn, S(KC_8)),         // ( = Shift+8
     [COMBO_RPRN]  = COMBO(combo_rprn, S(KC_9)),         // ) = Shift+9
     [COMBO_COLN]  = COMBO(combo_coln, KC_QUOT),         // : = KC_QUOT（JISのコロンキー）
-    [COMBO_EQL]   = COMBO(combo_eql, S(KC_MINS))        // = = Shift+Minus
+    [COMBO_EQL]   = COMBO(combo_eql, S(KC_BSLS))        // = = Shift+BSLS（JISの正しいイコール）
 };
 #endif
 
@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Layer 0 - Base（JIS対応、Mod-Tapは中指・人差し指のみ）
   [0] = LAYOUT_universal(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_MINS  , // 右端を正しいマイナスキーに
+    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_BSLS  , // 右端をKC_BSLSに修正（JISの-）
     KC_Z     , KC_X     , MT_C     , MT_V     , KC_B     ,                            KC_N     , MT_M     , MT_COMM  , KC_DOT   , KC_SLSH  ,
     KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_RSFT
   ),
