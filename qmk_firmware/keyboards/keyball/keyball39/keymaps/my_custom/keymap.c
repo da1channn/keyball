@@ -19,40 +19,8 @@
 
 // カスタムキーコードを定義
 enum custom_keycodes {
-    SELECT_ALL = SAFE_RANGE,
-    WIN_SCREENSHOT   // 追加：ウィンドウスクリーンショット
+    SELECT_ALL = SAFE_RANGE
 };
-
-// JIS配列用のキーコード定義
-#define JIS_MINS KC_BSLS        // -
-#define JIS_EQL  KC_MINS        // =
-#define JIS_LBRC KC_RBRC        // [
-#define JIS_RBRC KC_NUHS        // ]
-#define JIS_SCLN KC_QUOT        // ;
-#define JIS_QUOT KC_2           // '
-#define JIS_GRV  KC_ZKHK        // `
-#define JIS_BSLS KC_INT3        // \（￥）
-#define JIS_LCBR LSFT(KC_RBRC)  // {
-#define JIS_RCBR LSFT(KC_NUHS)  // }
-#define JIS_COLN LSFT(KC_QUOT)  // :
-#define JIS_DQUO LSFT(KC_2)     // "
-#define JIS_TILD LSFT(KC_EQL)   // ~
-#define JIS_UNDS LSFT(KC_BSLS)  // _
-#define JIS_PIPE LSFT(KC_INT3)  // |
-#define JIS_AT   KC_LBRC        // @
-#define JIS_CIRC KC_EQL         // ^
-#define JIS_HASH LSFT(KC_3)     // #
-#define JIS_DLR  LSFT(KC_4)     // $
-#define JIS_PERC LSFT(KC_5)     // %
-#define JIS_AMPR LSFT(KC_6)     // &
-#define JIS_ASTR LSFT(KC_8)     // *
-#define JIS_LPRN LSFT(KC_8)     // (
-#define JIS_RPRN LSFT(KC_9)     // )
-#define JIS_PLUS LSFT(KC_SCLN)  // +
-#define JIS_LT   LSFT(KC_COMM)  // 
-#define JIS_GT   LSFT(KC_DOT)   // >
-#define JIS_QUES LSFT(KC_SLSH)  // ?
-#define JIS_EXLM LSFT(KC_1)     // !
 
 // MOD-TAPの定義（中指・人差し指のみ）
 #define MT_D LCTL_T(KC_D)
@@ -87,23 +55,23 @@ enum combos {
     COMBO_EQL
 };
 
-// 左手コンボ（順序変更済み）
+// 左手コンボ
 const uint16_t PROGMEM combo_tab[]    = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_copy[]   = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM combo_paste[]  = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM combo_esc[]    = {KC_A, KC_Q, COMBO_END};    // 順序をA+Qに変更
-const uint16_t PROGMEM combo_selall[] = {KC_R, KC_W, COMBO_END};    // 順序をR+Wに変更
+const uint16_t PROGMEM combo_esc[]    = {KC_A, KC_Q, COMBO_END};
+const uint16_t PROGMEM combo_selall[] = {KC_R, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_prtscr[] = {KC_T, KC_G, COMBO_END};
 const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 
-// 右手コンボ（MT_定義を使用）
+// 右手コンボ（すべて純粋なキーコードを使用）
 const uint16_t PROGMEM combo_lbrc[]  = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM combo_rbrc[]  = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM combo_at[]    = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM combo_quot[]  = {MT_J, MT_K, COMBO_END};     // KC_J → MT_Jに変更
-const uint16_t PROGMEM combo_dquo[]  = {MT_K, KC_L, COMBO_END};     // KC_K → MT_Kに変更
-const uint16_t PROGMEM combo_lprn[]  = {MT_M, MT_COMM, COMBO_END};  // KC_M → MT_M、KC_COMM → MT_COMMに変更
-const uint16_t PROGMEM combo_rprn[]  = {MT_COMM, KC_DOT, COMBO_END}; // KC_COMM → MT_COMMに変更
+const uint16_t PROGMEM combo_quot[]  = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_dquo[]  = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_lprn[]  = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM combo_rprn[]  = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo_coln[]  = {KC_Y, KC_H, COMBO_END};
 const uint16_t PROGMEM combo_eql[]   = {KC_H, KC_N, COMBO_END};
 
@@ -112,21 +80,21 @@ combo_t key_combos[] = {
     [COMBO_TAB]    = COMBO(combo_tab, KC_TAB),
     [COMBO_COPY]   = COMBO(combo_copy, LCTL(KC_C)),
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)), 
-    [COMBO_SELALL] = COMBO(combo_selall, SELECT_ALL),    // カスタムキーコードを使用
-    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),           // A+Q = Esc
-    [COMBO_PRTSCR] = COMBO(combo_prtscr, WIN_SCREENSHOT), // カスタムキーコードに変更
+    [COMBO_SELALL] = COMBO(combo_selall, SELECT_ALL),
+    [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),
+    [COMBO_PRTSCR] = COMBO(combo_prtscr, LALT(KC_PSCR)),
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
     
-    // 右手（JIS定義を使わず直接指定）
-    [COMBO_LBRC]  = COMBO(combo_lbrc, KC_RBRC),         // [
-    [COMBO_RBRC]  = COMBO(combo_rbrc, KC_NUHS),         // ]
-    [COMBO_AT]    = COMBO(combo_at, KC_LBRC),           // @
-    [COMBO_QUOT]  = COMBO(combo_quot, S(KC_7)),         // ' = Shift+7（JISの正しい入力）
-    [COMBO_DQUO]  = COMBO(combo_dquo, S(KC_2)),         // " = Shift+2
-    [COMBO_LPRN]  = COMBO(combo_lprn, S(KC_8)),         // ( = Shift+8
-    [COMBO_RPRN]  = COMBO(combo_rprn, S(KC_9)),         // ) = Shift+9
-    [COMBO_COLN]  = COMBO(combo_coln, KC_QUOT),         // : = KC_QUOT（JISのコロンキー）
-    [COMBO_EQL]   = COMBO(combo_eql, S(KC_BSLS))        // = = Shift+BSLS（JISの正しいイコール）
+    // 右手（JIS配列での正しいキーコード）
+    [COMBO_LBRC]  = COMBO(combo_lbrc, KC_RBRC),              // [
+    [COMBO_RBRC]  = COMBO(combo_rbrc, KC_NUHS),              // ]
+    [COMBO_AT]    = COMBO(combo_at, KC_LBRC),                // @
+    [COMBO_QUOT]  = COMBO(combo_quot, S(KC_7)),              // '
+    [COMBO_DQUO]  = COMBO(combo_dquo, S(KC_2)),              // "
+    [COMBO_LPRN]  = COMBO(combo_lprn, S(KC_8)),              // (
+    [COMBO_RPRN]  = COMBO(combo_rprn, S(KC_9)),              // )
+    [COMBO_COLN]  = COMBO(combo_coln, KC_QUOT),              // :
+    [COMBO_EQL]   = COMBO(combo_eql, S(KC_MINS))             // =
 };
 #endif
 
@@ -141,52 +109,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_LCTL);
             }
             return false;
-            
-        case WIN_SCREENSHOT:
-            if (record->event.pressed) {
-                // Alt+PrintScreenを送信（ウィンドウのスクリーンショット）
-                register_code(KC_LALT);
-                tap_code(KC_PSCR);
-                unregister_code(KC_LALT);
-            }
-            return false;
     }
-    return true;  // その他のキーは通常通り処理
+    return true;
 }
 
 // レイヤー定義
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  // Layer 0 - Base（JIS対応、Mod-Tapは中指・人差し指のみ）
+  // Layer 0 - Base（JIS対応）
   [0] = LAYOUT_universal(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_BSLS  , // 右端をKC_BSLSに修正（JISの-）
+    KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_MINS  , // ハイフン
     KC_Z     , KC_X     , MT_C     , MT_V     , KC_B     ,                            KC_N     , MT_M     , MT_COMM  , KC_DOT   , KC_SLSH  ,
-    KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_RSFT
+    KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),RSFT_T(KC_LNG2),KC_RALT,KC_RGUI,KC_RSFT
   ),
   
+  // Layer 1 - Nav/Mouse（Space Hold）
   [1] = LAYOUT_universal(
-    KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
-    KC_F5    , KC_EXLM  , S(KC_6)  ,S(KC_INT3), S(KC_8)  ,                           S(KC_INT1), KC_BTN1  , KC_PGUP  , KC_BTN2  , KC_SCLN  ,
-    S(KC_EQL),S(KC_LBRC),S(KC_7)   , S(KC_2)  ,S(KC_RBRC),                            KC_LBRC  , KC_DLR   , KC_PGDN  , KC_BTN3  , KC_F11   ,
-    KC_INT1  , KC_EQL   , S(KC_3)  , _______  , _______  , _______  ,      TO(2)    , TO(0)    , _______  , KC_RALT  , KC_RGUI  , KC_F12
+    KC_INS   , KC_HOME  , KC_UP    , KC_END   , KC_DEL   ,                            _______ , KC_BTN3  , KC_MS_U  , KC_WH_U  , _______ ,
+    KC_LCTL  , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_LALT  ,                            _______ , KC_BTN1  , KC_MS_L  , KC_MS_D  , KC_MS_R  ,
+    _______ , _______ , _______ , _______ , _______ ,                            _______ , KC_BTN2  , KC_WH_L  , KC_WH_D  , KC_WH_R  ,
+    _______ , _______ , _______ , _______ , _______ , _______  ,      KC_BSPC  , KC_ENT   , _______ , _______ , _______ , _______
   ),
 
+  // Layer 2 - Numpad/F-Keys（Enter Hold）
   [2] = LAYOUT_universal(
-    KC_TAB   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                            KC_NUHS  , _______  , KC_BTN3  , _______  , KC_BSPC  ,
-   S(KC_QUOT), KC_4     , KC_5     , KC_6     ,S(KC_SCLN),                            S(KC_9)  , KC_BTN1  , KC_UP    , KC_BTN2  , KC_QUOT  ,
-    KC_SLSH  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                           S(KC_NUHS), KC_LEFT  , KC_DOWN  , KC_RGHT  , _______  ,
-    KC_ESC   , KC_0     , KC_DOT   , KC_DEL   , KC_ENT   , KC_BSPC  ,      _______  , _______  , _______  , _______  , _______  , _______
+    KC_TAB   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                            _______ , KC_F1    , KC_F2    , KC_F3    , KC_F4    ,
+    S(KC_QUOT), KC_4     , KC_5     , KC_6     ,S(KC_SCLN),                           _______ , KC_F5    , KC_F6    , KC_F7    , KC_F8    ,
+    KC_SLSH  , KC_1     , KC_2     , KC_3     ,S(KC_MINS),                            _______ , KC_F9    , KC_F10   , KC_F11   , KC_F12   ,
+    KC_0     , KC_0     , KC_DOT   , KC_ENT   , KC_ENT   , KC_BSPC  ,      _______ , _______ , _______ , _______ , _______ , _______
   ),
 
+  // Layer 3 - Symbols（かな Hold）
   [3] = LAYOUT_universal(
-    RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
-    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , SCRL_DVI ,                            _______  , _______  , _______  , _______  , _______  ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , SCRL_DVD ,                            CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE ,
-    QK_BOOT  , KBC_RST  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
+    KC_RBRC  , KC_NUHS  ,S(KC_INT1), KC_INT3  , _______ ,                            _______ , _______ , _______ , _______ , _______ ,
+    S(KC_RBRC),S(KC_NUHS), KC_QUOT , KC_LBRC  , _______ ,                            _______ , _______ , _______ , _______ , _______ ,
+    S(KC_3)  ,S(KC_MINS) , KC_MINS  , _______ , _______ ,                            _______ , _______ , _______ , _______ , _______ ,
+    _______ , _______ , _______ , _______ , _______ , _______  ,      _______ , QK_BOOT  , _______ , _______ , _______ , QK_BOOT
   ),
 };
 
-// Tapping Termのキーごと調整（ユーザーの要望により長め）
+// Tapping Termのキーごと調整
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // 人差し指（Shift/Alt）
@@ -194,14 +156,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LALT_T(KC_V):
         case RSFT_T(KC_J):
         case RALT_T(KC_M):
-            return 1000;  // ユーザーの要望により長め
+            return 1000;
             
         // 中指（Ctrl/GUI）
         case LCTL_T(KC_D):
         case LGUI_T(KC_C):
         case RCTL_T(KC_K):
         case RGUI_T(KC_COMM):
-            return 1000;  // ユーザーの要望により長め
+            return 1000;
             
         default:
             return TAPPING_TERM;
