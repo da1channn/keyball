@@ -25,9 +25,9 @@
 #define COMBO_TERM 70                 // 50→70に変更
 
 // Mod-Tap設定（中指・人差し指に最適化）
-#define TAPPING_TERM 170              // 標準的な値
+#define TAPPING_TERM 800              // 標準的な値
 #define TAPPING_TERM_PER_KEY          // キーごとの微調整
-#define QUICK_TAP_TERM 100            // 高速連打対応
+#define QUICK_TAP_TERM 200            // 高速連打対応
 #define PERMISSIVE_HOLD               // 既存設定を維持
 
 // Auto Mouse Layer設定
