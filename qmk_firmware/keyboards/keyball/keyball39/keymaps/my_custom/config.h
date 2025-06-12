@@ -8,7 +8,6 @@
 #define COMBO_TERM 40
 #define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_STRICT_TIMER
-#define COMBO_PERMISSIVE_HOLD // 【追記】Mod-Tapとの競合を解決
 
 // Mod-Tap設定（中指・人差し指に最適化）
 #define TAPPING_TERM 1000
