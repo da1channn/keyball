@@ -164,14 +164,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LALT_T(KC_V):
         case RSFT_T(KC_J):
         case RALT_T(KC_M):
-            return 500;
+            return 1000;
             
         // 中指はやや長め
         case LCTL_T(KC_D):
         case LGUI_T(KC_C):
         case RCTL_T(KC_K):
         case RGUI_T(KC_COMM):
-            return 800;
+            return 1000;
             
         default:
             return TAPPING_TERM;
