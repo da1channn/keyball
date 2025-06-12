@@ -20,14 +20,15 @@
 // Via/REMAP設定
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 
-// コンボ設定
-#define COMBO_COUNT 13
-#define COMBO_TERM 60
+// Combo設定
+#define COMBO_COUNT 15                // コンボ総数
+#define COMBO_TERM 70                 // 50→70に変更
 
-// タッピング設定
-#define TAPPING_TERM 800        // 長めに設定
-#define RETRO_TAPPING           // 必須
-#define QUICK_TAP_TERM 150  // 連続タップ時の誤動作防止
+// Mod-Tap設定（中指・人差し指に最適化）
+#define TAPPING_TERM 170              // 標準的な値
+#define TAPPING_TERM_PER_KEY          // キーごとの微調整
+#define QUICK_TAP_TERM 100            // 高速連打対応
+#define PERMISSIVE_HOLD               // 既存設定を維持
 
 // Auto Mouse Layer設定
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
