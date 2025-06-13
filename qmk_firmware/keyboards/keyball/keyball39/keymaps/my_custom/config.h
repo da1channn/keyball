@@ -1,24 +1,32 @@
 #pragma once
 
-// ⭐ これが必須！KBキーコードを動作させるため
-#include "../../config.h"
+// defaultのconfig.hをベースに必要な部分のみ追加
+#ifdef RGBLIGHT_ENABLE
+#    define RGBLIGHT_EFFECT_BREATHING
+#    define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#    define RGBLIGHT_EFFECT_SNAKE
+#    define RGBLIGHT_EFFECT_KNIGHT
+#    define RGBLIGHT_EFFECT_CHRISTMAS
+#    define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#    define RGBLIGHT_EFFECT_RGB_TEST
+#    define RGBLIGHT_EFFECT_ALTERNATING
+#    define RGBLIGHT_EFFECT_TWINKLE
+#endif
 
-// 以下、カスタム設定
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#define TAP_CODE_DELAY 5
 
+// オートマウス設定
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define AUTO_MOUSE_DEFAULT_LAYER 1
+
+// コンボ設定
 #define COMBO_COUNT 16
 #define COMBO_TERM 40
 #define COMBO_MUST_TAP_PER_COMBO
 #define COMBO_STRICT_TIMER
 
-#define TAPPING_TERM 1000
+// タッピング設定
+#define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM 100
-// #define PERMISSIVE_HOLD  // 無効のまま
-
-#define AUTO_MOUSE_DEFAULT_LAYER 1
-#define AUTO_MOUSE_ENABLE
-#define AUTO_MOUSE_LAYER_KEEP_TIME 30000
-#define AML_ACTIVATE_THRESHOLD 70
-
-#define POINTING_DEVICE_TASK_THROTTLE_MS 8
