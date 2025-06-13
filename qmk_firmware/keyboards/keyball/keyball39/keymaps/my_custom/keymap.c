@@ -1,4 +1,6 @@
-/* Copyright 2022 @Yowkees * Copyright 2022 MURAOKA Taro (aka KoRoN, @kaoriya) *
+/* Copyright 2022 @Yowkees
+ * Copyright 2022 MURAOKA Taro (aka KoRoN, @kaoriya)
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -53,9 +55,9 @@ enum combos {
     COMBO_EQL
 };
 
-// --- コンボのキー設定（すべて純粋なキーコードを使用） ---
+// --- コンボのキー設定 ---
 
-// 左手コンボ
+// 左手コンボ（MOD-TAPキーを含まない）
 const uint16_t PROGMEM combo_tab[]    = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_copy[]   = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM combo_paste[]  = {KC_E, KC_R, COMBO_END};
@@ -64,14 +66,14 @@ const uint16_t PROGMEM combo_selall[] = {KC_R, KC_W, COMBO_END};
 const uint16_t PROGMEM combo_prtscr[] = {KC_T, KC_G, COMBO_END};
 const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 
-// 右手コンボ
+// 右手コンボ（MOD-TAPキーはMT_xxxを使用）
 const uint16_t PROGMEM combo_lbrc[]  = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM combo_rbrc[]  = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM combo_at[]    = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM combo_quot[]  = {MT_J, MT_K, COMBO_END};
-const uint16_t PROGMEM combo_dquo[]  = {MT_K, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_lprn[]  = {MT_M, MT_COMM, COMBO_END};
-const uint16_t PROGMEM combo_rprn[]  = {MT_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo_quot[]  = {MT_J, MT_K, COMBO_END};      // MOD-TAPキーコード使用
+const uint16_t PROGMEM combo_dquo[]  = {MT_K, KC_L, COMBO_END};      // MOD-TAPキーコード使用
+const uint16_t PROGMEM combo_lprn[]  = {MT_M, MT_COMM, COMBO_END};   // MOD-TAPキーコード使用
+const uint16_t PROGMEM combo_rprn[]  = {MT_COMM, KC_DOT, COMBO_END}; // MOD-TAPキーコード使用
 const uint16_t PROGMEM combo_coln[]  = {KC_Y, KC_H, COMBO_END};
 const uint16_t PROGMEM combo_eql[]   = {KC_H, KC_N, COMBO_END};
 
@@ -83,7 +85,7 @@ combo_t key_combos[] = {
     [COMBO_PASTE]  = COMBO(combo_paste, LCTL(KC_V)),
     [COMBO_SELALL] = COMBO(combo_selall, SELECT_ALL),
     [COMBO_ESC]    = COMBO(combo_esc, KC_ESC),
-    [COMBO_PRTSCR] = COMBO(combo_prtscr, LALT(KC_PSCR)),    // Alt+PrintScreenを直接定義
+    [COMBO_PRTSCR] = COMBO(combo_prtscr, LALT(KC_PSCR)),    // Alt+PrintScreen
     [COMBO_WINSCR] = COMBO(combo_winscr, LWIN(LSFT(KC_S))),
 
     // 右手 (JIS配列での正しいキーコード)
@@ -121,19 +123,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     KC_A     , KC_S     , MT_D     , MT_F     , KC_G     ,                            KC_H     , MT_J     , MT_K     , KC_L     , KC_MINS  , // (-) ハイフン
     KC_Z     , KC_X     , MT_C     , MT_V     , KC_B     ,                            KC_N     , MT_M     , MT_COMM  , KC_DOT   , KC_SLSH  ,
-    // 親指キー (ご提案のレイアウト)
+    // 親指キー
     KC_LCTL  , KC_LGUI  , KC_LALT  , LSFT_T(KC_LNG2), LT(1,KC_SPC)   , LT(3,KC_LNG1),
     KC_BSPC  , LT(2,KC_ENT), RSFT_T(KC_LNG2), KC_RALT  , KC_RGUI  , KC_RSFT
   ),
 
-  // Layer 1 - Nav/Mouse (Space長押し)
+  // Layer 1 - Nav/Mouse (Space長押し) + KBキーコード
   [1] = LAYOUT_universal(
-    KC_INS   , KC_HOME  , KC_UP    , KC_END   , KC_DEL   ,                            _______, KC_BTN3  , KC_MS_U  , KC_WH_U  , _______,
-    KC_LCTL  , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_LALT  ,                            _______, KC_BTN1  , KC_MS_L  , KC_MS_D  , KC_MS_R  ,
-    _______,   _______,   _______,   _______,   _______,                            _______, KC_BTN2  , KC_WH_L  , KC_WH_D  , KC_WH_R  ,
-    // 親指キー (レイヤー移動中は元のキー機能)
-    _______,   _______,   _______,   LSFT_T(KC_LNG2), _______,   LT(3,KC_LNG1),
-    KC_BSPC  , LT(2,KC_ENT), RSFT_T(KC_LNG2), _______,   _______,   _______
+    KC_INS   , KC_HOME  , KC_UP    , KC_END   , KC_DEL   ,                            _______ , KC_ACL0  , KC_ACL1  , KC_ACL2  , 0x7E0F  , // Kb15
+    C(S(KC_LEFT)), KC_LEFT, KC_DOWN , KC_RGHT  , C(S(KC_RGHT)),                       _______ , KC_BTN1  , KC_WH_U  , KC_BTN2  , 0x7E0E  , // Kb14
+    C(S(KC_TAB)), C(KC_TAB), G(KC_TAB), A(KC_TAB), C(KC_T),                           _______ , KC_BTN4  , KC_WH_D  , KC_BTN5  , 0x7E0D  , // Kb13
+    // 親指キー
+    _______  , _______  , _______  , LSFT_T(KC_LNG2), _______  , LT(3,KC_LNG1),
+    KC_BSPC  , LT(2,KC_ENT), RSFT_T(KC_LNG2), 0x7E03, 0x7E02, _______  // Kb3, Kb2
   ),
 
   // Layer 2 - Numpad/F-Keys (Enter長押し)
