@@ -1,8 +1,8 @@
-# VIAと同じ構成
-VIA_ENABLE = yes
-TAP_DANCE_ENABLE = no
-
-# カスタム追加
+# defaultと同じ基本設定
 RGBLIGHT_ENABLE = yes
 OLED_ENABLE = yes
+
+# コンボのみ追加
 COMBO_ENABLE = yes
+
+# VIAは無効のまま！
