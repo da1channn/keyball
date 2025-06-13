@@ -1,4 +1,8 @@
+# VIAと同じ構成
+VIA_ENABLE = yes
+TAP_DANCE_ENABLE = no
+
+# カスタム追加
 RGBLIGHT_ENABLE = yes
 OLED_ENABLE = yes
-VIA_ENABLE = yes
 COMBO_ENABLE = yes
