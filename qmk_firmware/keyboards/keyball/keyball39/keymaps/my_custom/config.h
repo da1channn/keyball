@@ -47,3 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 1000
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM 100
+
+// ポーリング間隔を短くして滑らかに（デフォルト8ms→1ms）
+#define POINTING_DEVICE_TASK_THROTTLE_MS 1
+
+// マウスレポートレートを上げる（より滑らかな動き）
+#define USB_POLLING_INTERVAL_MS 1
