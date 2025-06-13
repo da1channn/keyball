@@ -68,10 +68,10 @@ const uint16_t PROGMEM combo_winscr[] = {KC_G, KC_B, COMBO_END};
 const uint16_t PROGMEM combo_lbrc[]  = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM combo_rbrc[]  = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM combo_at[]    = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM combo_quot[]  = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM combo_dquo[]  = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_lprn[]  = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM combo_rprn[]  = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo_quot[]  = {MT_J, MT_K, COMBO_END};
+const uint16_t PROGMEM combo_dquo[]  = {MT_K, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_lprn[]  = {MT_M, MT_COMM, COMBO_END};
+const uint16_t PROGMEM combo_rprn[]  = {MT_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo_coln[]  = {KC_Y, KC_H, COMBO_END};
 const uint16_t PROGMEM combo_eql[]   = {KC_H, KC_N, COMBO_END};
 
