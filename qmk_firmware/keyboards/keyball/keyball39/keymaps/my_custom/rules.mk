@@ -1,8 +1,5 @@
-# defaultと同じ基本設定
 RGBLIGHT_ENABLE = yes
 OLED_ENABLE = yes
-
-# コンボのみ追加
+VIA_ENABLE = yes
 COMBO_ENABLE = yes
-
-# VIAは無効のまま！
+TAP_DANCE_ENABLE = no
