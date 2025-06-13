@@ -1,4 +1,8 @@
+
 #pragma once
+
+// ⭐ 重要：親のconfig.hを必ず継承
+#include "../../config.h"
 
 // via/remap設定
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
@@ -13,6 +17,10 @@
 #define TAPPING_TERM 1000
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM 100
+// #define PERMISSIVE_HOLD  // コメントアウト（コンボ優先のため）
+
+// === Keyball固有機能の明示的な有効化 ===
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 
 // Auto Mouse Keys設定
 #define AUTO_MOUSE_DEFAULT_LAYER 1
